@@ -20,10 +20,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     left.sort();
     right.sort();
 
-    let mut sum: i32 = 0;
-    for i in 0..left.len(){
-        sum = sum + (left[i] - right[i]).abs();
-    }
+    let diff_sum = left.iter().
+    zip(&right).
+    map(|(l, r)| (l - r).abs()).sum::<i32>();
+    println!("{}", diff_sum);
+    
 
     let mut counts: std::collections::HashMap<i32, i32> = std::collections::HashMap::new();
     for i in right{
